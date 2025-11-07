@@ -1,0 +1,11 @@
+with cte as(
+   select [cola]
+        , [colb]
+        , [colc]
+        , [coln]
+        , rownum = row_number() over(partition by cola order by cola)
+     from dbo.Table1
+)
+delete 
+  from cte
+  where rownum > 1
